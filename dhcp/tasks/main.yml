@@ -1,0 +1,42 @@
+---
+# - dependencies: 
+#     name: Gateway Role
+#     src: https://github.com/EAS-Harrison/ansible-gateway-role.git
+    
+
+- name: Update subscription manager
+  command: subscription-manager refresh
+
+- name: Install dhcp-server
+  become_user: root
+  yum:
+    name: dhcp
+
+- name: /etc/dhcp/dhcpd.conf config
+  become_user: root
+  blockinfile:
+    dest: /etc/dhcp/dhcpd.conf
+    block: |
+      subnet 10.0.0.3/24 netmask 255.255.255.0 {
+        range 10.0.0.0 10.0.0.24 ;
+        default-lease-time 600 ;
+        max-lease-time 7200 ;
+      }
+      gateway 10.0.0.1 ;
+
+- name: Start DHCP
+  service:
+    name: dhcpd
+    state: started
+
+- name: Add dhcpd service
+  ansible.posix.firewalld:
+    service: dhcpd
+    permanent: yes
+    state: enabled
+
+- name: Restart firewall
+  systemd:
+    name: firewalld
+    state: restarted
+
