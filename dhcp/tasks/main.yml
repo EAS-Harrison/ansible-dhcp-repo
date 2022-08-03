@@ -1,9 +1,4 @@
 ---
-# - dependencies: 
-#     name: Gateway Role
-#     src: https://github.com/EAS-Harrison/ansible-gateway-role.git
-    
-
 - name: Update subscription manager
   command: subscription-manager refresh
 
@@ -17,12 +12,18 @@
   blockinfile:
     dest: /etc/dhcp/dhcpd.conf
     block: |
-      subnet 10.0.0.3/24 netmask 255.255.255.0 {
-        range 10.0.0.0 10.0.0.24 ;
-        default-lease-time 600 ;
-        max-lease-time 7200 ;
+      option domain-name "harrison";
+      default-lease-time 86400 ;
+      max-lease-time 172800 ;
+      ddns-update-style none ;
+      authoritative ;
+      subnet 10.0.0.0 netmask 255.255.255.0 {
+              range 10.0.0.10 10.0.0.50 ;
+              option subnet-mask 255.255.255.0 ;
+              option routers 10.0.0.1 ; 
+              option domain-name-servers 10.0.0.3 , 8.8.8.8 , 8.8.4.4 ;  
+              option domain-search "harrison";
       }
-      gateway 10.0.0.1 ;
 
 - name: Start DHCP
   service:
@@ -31,7 +32,7 @@
 
 - name: Add dhcpd service
   ansible.posix.firewalld:
-    service: dhcpd
+    service: dhcp
     permanent: yes
     state: enabled
 
@@ -39,4 +40,5 @@
   systemd:
     name: firewalld
     state: restarted
+
 

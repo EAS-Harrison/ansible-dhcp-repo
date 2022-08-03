@@ -2,9 +2,9 @@ dependency:
   name: galaxy
 driver:
   name: vmware
-  vcenter_hostname: 192.168.1.100
-  vcenter_username: administrator@easlab.co.uk
-  vcenter_password: Renegade187!
+  vcenter_hostname: ${VCENTER_HOSTNAME}
+  vcenter_username: ${VCENTER_USERNAME}
+  vcenter_password: ${VCENTER_PASSWORD}
   validate_certs: false
   datacenter: Cardiff
   esxi_hostname: 192.168.1.102
@@ -37,8 +37,10 @@ platforms:
       num_cpus: 2 
       memory_mb: 2048
     networks:
+      - name: VM Network 
+        type: dhcp
       - name: harrison
-        type: dns
+        type: dhcp
     group: dns
   - name: h-dhcp-instance
     template: RHEL79-Thin
@@ -46,6 +48,8 @@ platforms:
       num_cpus: 2 
       memory_mb: 2048
     networks:
+      - name: VM Network 
+        type: dhcp
       - name: harrison
         type: dhcp
     group: dhcp

@@ -1,0 +1,6 @@
+---
+- role: 
+    name: gateway
+    src: https://github.com/EAS-Harrison/ansible-gateway-role.git
+    scm: git
+    version: main
