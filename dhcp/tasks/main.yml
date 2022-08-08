@@ -14,7 +14,7 @@
       DNS1={{ dns_ip | default('default_value') }} ;
       DEFROUTE=yes
       DOMAIN="{{ domain_name | default('default_value') }}"
-      GATEWAY={{ gateway | default('default_value') }} ;
+      GATEWAY={{ gateway_ip | default('default_value') }} ;
 
 
 - name: /etc/dhcp/dhcpd.conf config
@@ -30,7 +30,7 @@
       subnet {{ subnet| default('default_value') }} netmask {{ subnet-mask | default('default_value') }} {
               range 10.0.0.10 10.0.0.100 ;
               option subnet-mask {{ subnet-mask | default('default_value') }} ;
-              option routers {{ gateway | default('default_value') }} ; 
+              option routers {{ gateway_ip | default('default_value') }} ; 
               option domain-name-servers {{ dns_ip | default('default_value') }} ;  
               option domain-search "{{ domain_name | default('default_value') }}";
       }
