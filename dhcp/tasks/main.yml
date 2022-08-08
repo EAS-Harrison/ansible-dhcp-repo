@@ -7,22 +7,32 @@
   yum:
     name: dhcp
 
+- name: /etc/sysconfig/network-scripts/ifcfg-ens224
+  blockinfile:
+    dest: /etc/sysconfig/network-scripts/ifcfg-ens224
+    block: |
+      DNS1={{ dns }}
+      DEFROUTE=yes
+      DOMAIN={{ domain_name }}
+      GATEWAY={{ gateway }}
+
+
 - name: /etc/dhcp/dhcpd.conf config
   become_user: root
   blockinfile:
     dest: /etc/dhcp/dhcpd.conf
     block: |
-      option domain-name "harrison";
+      option domain-name "{{ domain_name }}";
       default-lease-time 86400 ;
       max-lease-time 172800 ;
       ddns-update-style none ;
       authoritative ;
       subnet 10.0.0.0 netmask 255.255.255.0 {
-              range 10.0.0.10 10.0.0.50 ;
+              range 10.0.0.10 10.0.0.100 ;
               option subnet-mask 255.255.255.0 ;
-              option routers 10.0.0.1 ; 
-              option domain-name-servers 10.0.0.3 , 8.8.8.8 , 8.8.4.4 ;  
-              option domain-search "harrison";
+              option routers {{ gateway }} ; 
+              option domain-name-servers {{ dns }} ;  
+              option domain-search "{{ domain_name }}";
       }
 
 - name: Start DHCP
