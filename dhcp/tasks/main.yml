@@ -27,7 +27,7 @@
       max-lease-time 172800 ;
       ddns-update-style none ;
       authoritative ;
-      subnet {{ subnet| default('default_value') }} netmask {{ subnet-mask | default('default_value') }} {
+      subnet {{ subnet| default('default_value') }} netmask {{ subnet_mask | default('default_value') }} {
               range 10.0.0.10 10.0.0.100 ;
               option subnet-mask {{ subnet-mask | default('default_value') }} ;
               option routers {{ gateway_ip | default('default_value') }} ; 

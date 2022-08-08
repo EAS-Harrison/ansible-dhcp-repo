@@ -2,5 +2,5 @@
 domain_name: harrison.local
 dns_ip: 10.0.0.3
 gateway_ip: 10.0.0.1
-subnet-mask: 255.255.255.0
+subnet_mask: 255.255.255.0
 subnet: 10.0.0.0
