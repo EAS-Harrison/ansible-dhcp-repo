@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   
-- import_playbook: ./clusterbook.yaml
+- import_playbook: ../../clusterbook.yaml
   
   # tasks:
   #   - name: "Include network.dhcp"
