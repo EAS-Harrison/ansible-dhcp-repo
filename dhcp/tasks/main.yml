@@ -22,7 +22,7 @@
   blockinfile:
     dest: /etc/dhcp/dhcpd.conf
     block: |
-      option domain-name "{{ domain_name | default('default_value') }}";
+      option domain-name {{ domain_name | default('default_value') }};
       default-lease-time 86400 ;
       max-lease-time 172800 ;
       ddns-update-style none ;
