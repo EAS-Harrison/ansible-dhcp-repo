@@ -13,7 +13,7 @@
     block: |
       DNS1={{ dns_ip }} ;
       DEFROUTE=yes
-      DOMAIN="{{ domain_name }}"
+      DOMAIN={{ domain_name }}
       GATEWAY={{ gateway_ip }} ;
 
 
@@ -32,7 +32,7 @@
               option subnet-mask {{ subnet_mask }} ;
               option routers {{ gateway_ip }} ; 
               option domain-name-servers {{ dns_ip }} ;  
-              option domain-search "{{ domain_name }}";
+              option domain-search {{ domain_name }};
       }
 
 - name: Start DHCP
