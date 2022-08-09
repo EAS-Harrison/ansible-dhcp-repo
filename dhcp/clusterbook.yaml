@@ -1,5 +1,10 @@
+---
+# - hosts: all
+
+# pre_tasks:
 
 # - name: Setting mac address facts
+#   when:
 #   ansible.builtin.set_fact:
 #     one_fact: something
 #     other_fact: "{{ local_var * 2 }}"
