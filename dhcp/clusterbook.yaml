@@ -1,3 +1,10 @@
+
+# - name: Setting mac address facts
+#   ansible.builtin.set_fact:
+#     one_fact: something
+#     other_fact: "{{ local_var * 2 }}"
+#     another_fact: "{{ some_registered_var.results | map(attribute='ansible_facts.some_fact') | list }}"
+
 - hosts: h-gateway-instance
   tasks:
     - name: Use gateway
@@ -9,6 +16,7 @@
     - name: Use dhcp
       include_role:
         name: dhcp
+
 
 # - hosts: h-dns-instance
 #   tasks:
