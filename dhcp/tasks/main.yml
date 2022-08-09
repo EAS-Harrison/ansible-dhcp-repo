@@ -22,7 +22,7 @@
   blockinfile:
     dest: /etc/dhcp/dhcpd.conf
     block: |
-      option domain-name {{ domain_name }} ;
+      option domain-name "{{ domain_name }}" ;
       default-lease-time 86400 ;
       max-lease-time 172800 ;
       ddns-update-style none ;
@@ -32,7 +32,7 @@
               option subnet-mask {{ subnet_mask }} ;
               option routers {{ gateway_ip }} ; 
               option domain-name-servers {{ dns_ip }} ;  
-              option domain-search {{ domain_name }};
+              option domain-search "{{ domain_name }}" ;
       }
 
 - name: Start DHCP
