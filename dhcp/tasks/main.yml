@@ -11,10 +11,10 @@
   blockinfile:
     dest: /etc/sysconfig/network-scripts/ifcfg-ens224
     block: |
-      DNS1={{ dns_ip | default('default_value') }} ;
+      DNS1={{ dns_ip }} ;
       DEFROUTE=yes
-      DOMAIN="{{ domain_name | default('default_value') }}"
-      GATEWAY={{ gateway_ip | default('default_value') }} ;
+      DOMAIN="{{ domain_name }}"
+      GATEWAY={{ gateway_ip }} ;
 
 
 - name: /etc/dhcp/dhcpd.conf config
@@ -22,17 +22,17 @@
   blockinfile:
     dest: /etc/dhcp/dhcpd.conf
     block: |
-      option domain-name {{ domain_name | default('default_value') }};
+      option domain-name {{ domain_name }} ;
       default-lease-time 86400 ;
       max-lease-time 172800 ;
       ddns-update-style none ;
       authoritative ;
-      subnet {{ subnet| default('default_value') }} netmask {{ subnet_mask | default('default_value') }} {
+      subnet {{ subnet }} netmask {{ subnet_mask }} {
               range 10.0.0.10 10.0.0.100 ;
-              option subnet-mask {{ subnet-mask | default('default_value') }} ;
-              option routers {{ gateway_ip | default('default_value') }} ; 
-              option domain-name-servers {{ dns_ip | default('default_value') }} ;  
-              option domain-search "{{ domain_name | default('default_value') }}";
+              option subnet-mask {{ subnet-mask }} ;
+              option routers {{ gateway_ip }} ; 
+              option domain-name-servers {{ dns_ip }} ;  
+              option domain-search "{{ domain_name }}";
       }
 
 - name: Start DHCP
