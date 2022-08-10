@@ -38,6 +38,10 @@
         hardware ethernet {{ gateway_macaddress }} ; 
         fixed-address {{ gateway_ip }};
       }
+      host DNS-node {
+        hardware ethernet {{ dns_macaddress }} ; 
+        fixed-address {{ dns_ip }};
+      }
 
 
 - name: Start DHCP
