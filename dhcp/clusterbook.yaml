@@ -7,36 +7,11 @@
     ansible.builtin.set_fact:
       dhcp_macaddress: "{{hostvars['h-dhcp-instance'].ansible_ens224.macaddress}}" 
 
-
-
-
-# - name: Setting mac address facts
-#   when: "{{ 'h-dhcp-instance' in ansible_facts.hostname }}"
-#   ansible.builtin.set_fact:
-#     macaddress: "{{ ansible_facts.ens224.macaddress }}"
-
-
   roles:
     - { role: gateway , when: 'h-gateway-instance' in inventory_hostname }
-
-
 
   tasks:
 
     - name: Run DHCP tasks
       when:  "{{ 'h-dhcp-instance' in ansible_facts.hostname }}"
       include_tasks: tasks/main.yml
-
-
-# - hosts: h-dhcp-instance
-#   tasks:
-#     - name: Use dhcp
-#       include_role:
-#         name: dhcp
-
-
-# - hosts: h-dns-instance
-#   tasks:
-#     - name: Use dns
-#       include_role:
-#         name: dns
