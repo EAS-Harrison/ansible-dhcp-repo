@@ -4,14 +4,9 @@
   pre_tasks:
 
   - name: Setting mac address facts
-    when: "{{ 'h-dhcp-instance' in ansible_facts.hostname }}"
     ansible.builtin.set_fact:
-      dhcp_macaddress: "{{ ansible_facts.ens224.macaddress }}"
-
-  - name: Setting mac address facts
-    when: "{{ 'h-gateway-instance' in ansible_facts.hostname }}"
-    ansible.builtin.set_fact:
-      gateway_macaddress: "{{ ansible_facts.ens224.macaddress }}"
+      dhcp_macaddress: "{{ hostvars['h-dhcp-instance'].ansible_ens224.macaddress }}"
+      gateway_macaddress: "{{ hostvars['h-gateway-instance'].ansible_ens224.macaddress }}"
 
 
 
