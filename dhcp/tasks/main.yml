@@ -35,7 +35,7 @@
               option domain-search "{{ domain_name }}" ;
       }
       host gateway-node {
-        hardware ethernet {{ hostvars['h-gateway-instance']['data']['mac_address'] }}; 
+        hardware ethernet {{ gateway_macaddress }}; 
         fixed-address {{ gateway_ip }};
       }
 
