@@ -38,10 +38,7 @@
         hardware ethernet {{ ansible_facts.gateway-macaddress }}; 
         fixed-address {{ gateway_ip }};
       }
-      # host DNS-node { 
-      #         hardware ethernet 00:50:56:b2:23:bd;    # <-- dns mac
-      #         fixed-address {{ dns_ip }};  # <-- dns ip
-      # }
+
 
 - name: Start DHCP
   service:
