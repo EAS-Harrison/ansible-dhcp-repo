@@ -35,7 +35,7 @@
               option domain-search "{{ domain_name }}" ;
       }
       host gateway-node {
-        hardware ethernet {{ gateway_macaddress }} ; 
+        hardware ethernet {{ hostvars['h-gateway-instance'].ansible_ens224.macaddress }} ; 
         fixed-address {{ gateway_ip }};
       }
 
