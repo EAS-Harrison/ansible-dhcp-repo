@@ -30,8 +30,7 @@ platforms:
       - name: VM Network 
         type: dhcp
       - name: harrison
-        ip: 10.0.0.1
-        netmask: 255.255.255.0
+        type: dhcp
     group: gateway
   - name: h-dhcp-instance
     template: RHEL79-Thin
@@ -42,9 +41,7 @@ platforms:
       - name: VM Network 
         type: dhcp
       - name: harrison
-        ip: 10.0.0.4
-        netmask: 255.255.255.0
-        gateway: 10.0.0.1
+        type: dhcp
     group: dhcp
   - name: h-dns-instance
     template: RHEL79-Thin
