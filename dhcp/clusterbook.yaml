@@ -6,7 +6,6 @@
   - name: Setting mac address facts
     ansible.builtin.set_fact:
       dhcp_macaddress: "{{hostvars['h-dhcp-instance'].ansible_ens224.macaddress}}" 
-      # gateway_macaddress: "{{ hostvars['h-gateway-instance'].ansible_ens224.macaddress }}"
 
 
 
