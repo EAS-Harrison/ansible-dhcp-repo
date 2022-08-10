@@ -30,7 +30,7 @@ platforms:
       - name: VM Network 
         type: dhcp
       - name: harrison
-        type: dhcp
+        ip: 10.0.0.1
     group: gateway
   - name: h-dhcp-instance
     template: RHEL79-Thin
