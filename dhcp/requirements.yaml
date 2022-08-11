@@ -1,15 +1,15 @@
 ---
 - src: https://github.com/EAS-Harrison/ansible-gateway-role
   scm: git
-  version: main
+  version: multi
   name: gateway
 
 - src: https://github.com/EAS-Harrison/ansible-dhcp-repo
   scm: git
-  version: main
+  version: multi
   name: dhcp
 
 - src: https://github.com/EAS-Harrison/ansible-dns-repo
   scm: git
-  version: main
+  version: multi
   name: dns
